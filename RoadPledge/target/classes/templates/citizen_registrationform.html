@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
 <title>Customer Management System</title>
-<meta name="viewport" content="width=device-width" charset="UTF-8">
 <style>
 body{
 background-color: #dae9f2;
@@ -21,6 +20,18 @@ padding-left: 10px
   margin-right: auto;
   width: 100%;
   height: 50%;
+}
+.column_1{
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+}
+.column_2{
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
 }
 header {
 background-color:green;
@@ -62,6 +73,15 @@ input[type=text], select {
   position: inherit;
   margin-left: 1%;
 }
+.small{
+  width: 10%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  position: inherit;
+  margin-left: 1%;
+}
 label{
   padding: 10px;
   color: black;
@@ -69,7 +89,7 @@ label{
   font-weight: bold;
   display: inline;
 }
-nameset{
+valueset{
   padding: 10px;
   color: black;
   width: inherit;
@@ -82,66 +102,76 @@ margin-right: 10%;
 margin-top: -2%;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+<script>
+
+// To get Co-ordinates of Client / User Side 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+ 
+}
+
+// To set the input field in form for pushing the data into the DB 
+function showPosition(position) {
+	document.getElementById("co-ordinates").value = position.coords.latitude + "," + position.coords.longitude;
+	
+// To get IP address and Set IP Address in input field to push to DB 	
+	$.getJSON("https://api.ipify.org?format=json", function(data) {
+		  document.getElementById("ipAddress").value = data.ip;    
+	      
+	  })
+}
+</script> 
 </head>
-<body>
+<body onload="getLocation()">
 <img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
 <img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
 <header>
 <h1>Enter Basic Details</h1>
 </header>
-<div class="form-group">
-<form style="align-items: center;" method="post" th:action="@{/pledge}" th:object="${citizen}" class="form">
-<fieldset>
-<legend>Registration of Citizen about to take pledge</legend>
 
-<label>Enter your Full name :</label><br>
-<input required type="text" name="*{salutation}" placeholder="Enter Honorifics" class="form-control"/>
-<input required type="text" name="*{fullname}" placeholder="Enter Your Full name" class="form-control"/>
+<form style="align-items: center;" method="post" action="/pledge" class="form">
+<p>Registration of Citizen about to take pledge</p>
+<div class="row">
+<div class="column_1">
+<label>Enter your Full value :</label><br>
+<input  class="small" type="text" name="salutation" value=${Citizen.salutation} placeholder="Enter Honorifics" class="form-control"/>
+<input   type="text" name="fullName" value=${Citizen.fullName} placeholder="Enter Your Full Name" class="form-control"/>
 <br>
 <label>Please Select Your Gender :</label><br>
-<label for="male">Male</label><input required type="radio"  name="*{gender}" class="form-control"/>
-
-<label for="female">Female</label><input required type="radio"  name="*{gender}" class="form-control"/>
-
-<label for="other">Other</label><input required type="radio" name="*{gender}" class="form-control"/>
-
+<input   type="text" name="gender" value=${Citizen.gender} placeholder="Enter your Gender" class="form-control"/>
 <br>
 <label>Enter your Date of Birth :</label><br>
-<input required type="text" name="*{dateOfBirth}" placeholder="Enter your Date of Birth" class="form-control"/>
+<input   type="text" value=${Citizen.dateOfBirth} name="dateOfBirth" placeholder="Enter your Date of Birth" class="form-control"/>
 <br>
 <label>Enter your Pincode :</label><br>
-<input required type="text" name="*{pincode}" placeholder="Enter your Pincode" class="form-control"/>
+<input   type="text" value=${Citizen.pincode} name="pincode" placeholder="Enter your Pincode" class="form-control"/>
 <br>
+</div>
+<div class="column_2">
 <label>Enter your State :</label><br>
-<input required type="text" name="*{state}" placeholder="Enter your Pincode" class="form-control"/>
+<input   type="text" value=${Citizen.state} name="state" placeholder="Enter your State" class="form-control"/>
 <br>
 <label>Enter your District :</label><br>
-<input required type="text" name="*{district}" placeholder="Enter your Pincode" class="form-control"/>
+<input   type="text" value=${Citizen.district} name="district" placeholder="Enter your District" class="form-control"/>
 <br>
 <label>Enter your Email ID :</label><br>
-<input required type="text" name="*{email}" placeholder="Enter Your Email ID" class="form-control"/>
+<input   type="text" value=${Citizen.email} name="email" placeholder="Enter Your Email ID" class="form-control"/>
 <br>
 <label>Enter your MobileNo :</label><br>
-<input required type="text" name="*{mobileNo}" placeholder="Enter your Mobile No" class="form-control"/>
+<input   type="text" value=${Citizen.mobileNo} name="mobileNo" placeholder="Enter your Mobile No" class="form-control"/>
 <br>
+<input   id="co-ordinates" type="hidden" value=${Citizen.location} name="location" placeholder="" class="form-control"/>
+<input   id="ipAddress" type="hidden" value=${Citizen.ipAddress} name="ipAddress" placeholder="" class="form-control"/>
 <label>Submit the Details :</label>
-<button type="submit" name="submit">Proceed To Take Pledge</button>
+<button  type="submit" name="submit" >Proceed To Take Pledge</button>
 <br>
-</fieldset>
-</form>
 </div>
-<!-- <form method="post" th:action="@{/citizen/}" th:object="${citizen}">
-        <input id="firstname" placeholder="Enter First name" required type="text" name="*{fullname}"/>
-        <input id="lastname" placeholder="Enter Last name" required type="text" name="*{lastname}"/>
-        <select id="role" required name="*{role}">
-            <option name="" >Select a role</option>
-            <option name="GUEST" >GUEST</option>
-            <option name="USER" >USER</option>
-            <option name="ADMIN" >ADMIN</option>
-        </select>
-    <input type="submit" name="Create User">
-</form> -->
-
-
+</div>
+</form>
 </body>
 </html>

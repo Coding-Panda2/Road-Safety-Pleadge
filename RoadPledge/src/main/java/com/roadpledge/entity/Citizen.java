@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.geo.Point;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +27,7 @@ public class Citizen {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int citizen_id;
+	private int id;
 
 	private String salutation;
 	private String fullName;
@@ -36,5 +38,7 @@ public class Citizen {
 	private String district;
 	private String email;
 	private String mobileNo;
+	private Point location;
+	private String ipAddress;
 
 }

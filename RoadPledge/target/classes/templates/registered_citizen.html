@@ -199,6 +199,7 @@ table th {
   <tbody>
       <tr th:each="citizen: ${citizens}">
         <td th:text="${citizen.id}"></td>
+        <td th:text="${citizen.salutation}"></td>
         <td th:text="${citizen.fullName}"></td>
         <td th:text="${citizen.dateOfBirth}"></td>
         <td th:text="${citizen.pincode}"></td>

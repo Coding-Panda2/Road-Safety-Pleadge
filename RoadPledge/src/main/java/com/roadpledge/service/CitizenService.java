@@ -1,6 +1,8 @@
 package com.roadpledge.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,17 +20,30 @@ public class CitizenService {
 	public Citizen addCitizen(Citizen parameter) {
 		
 		Citizen citizen = Citizen.builder()
-				          .salutation(parameter.getSalutation())
 				          .fullName(parameter.getFullName())
 				          .gender(parameter.getGender())
 				          .dateOfBirth(parameter.getDateOfBirth())
 				          .pincode(parameter.getPincode())
-				          .state(parameter.getPincode())
+				          .state(parameter.getState())
 				          .district(parameter.getDistrict())
 				          .email(parameter.getEmail())
-				          .mobileNo(parameter.getMobileNo()).build();
+				          .mobileNo(parameter.getMobileNo())
+				          .location(parameter.getLocation())
+				          .ipAddress(parameter.getIpAddress()).build();
 		
 		return citizenRepository.save(citizen);
+	}
+	
+	public List<Citizen> showAllCitizen(){
+		
+		return citizenRepository.findAll();
+		
+	}
+	
+	public Citizen searchById(int id) {
+		
+		Citizen citizen = citizenRepository.findById(id).orElseThrow();
+		return citizen;
 	}
 
 }
