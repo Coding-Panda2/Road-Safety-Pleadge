@@ -1,5 +1,6 @@
 package com.roadpledge.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,8 +29,8 @@ public class Citizen {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	private String salutation;
+	
+	@Column(name="fullName", length = 25)
 	private String fullName;
 	private String gender;
 	private String dateOfBirth;

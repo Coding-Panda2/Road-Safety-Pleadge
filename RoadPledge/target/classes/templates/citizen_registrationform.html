@@ -139,7 +139,7 @@ function showPosition(position) {
 <div class="row">
 <div class="column_1">
 <label>Enter your Full value :</label><br>
-<input  class="small" type="text" name="salutation" value=${Citizen.salutation} placeholder="Enter Honorifics" class="form-control"/>
+<!-- <input   type="text" name="salutation" value=${Citizen.salutation} placeholder="Enter Honorifics" class="form-control"/> -->
 <input   type="text" name="fullName" value=${Citizen.fullName} placeholder="Enter Your Full Name" class="form-control"/>
 <br>
 <label>Please Select Your Gender :</label><br>
@@ -167,11 +167,12 @@ function showPosition(position) {
 <br>
 <input   id="co-ordinates" type="hidden" value=${Citizen.location} name="location" placeholder="" class="form-control"/>
 <input   id="ipAddress" type="hidden" value=${Citizen.ipAddress} name="ipAddress" placeholder="" class="form-control"/>
+</div>
+</div>
 <label>Submit the Details :</label>
 <button  type="submit" name="submit" >Proceed To Take Pledge</button>
 <br>
-</div>
-</div>
+
 </form>
 </body>
 </html>

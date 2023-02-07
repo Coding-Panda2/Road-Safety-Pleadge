@@ -177,15 +177,14 @@ table th {
 </head>
 <body>
 <img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
-<!-- <img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
- --><header>
+<img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
+<header>
 <h2>CITIZEN OF UP WHO HAVE COMMITTED THEMSELVES TO ROAD SAFETY</h2>
 </header>
 <table border="1" style="color:green; font-size-adjust: inherit;font-weight: bold;border-style: solid;">
   <thead class="thead-dark">
     <tr>
       <th>Citizen-Id</th>
-      <th>Salutation</th>
       <th>Full Name</th>
       <th>Date Of Birth</th>
       <th>PinCode</th>
@@ -199,7 +198,6 @@ table th {
   <tbody>
       <tr th:each="citizen: ${citizens}">
         <td th:text="${citizen.id}"></td>
-        <td th:text="${citizen.salutation}"></td>
         <td th:text="${citizen.fullName}"></td>
         <td th:text="${citizen.dateOfBirth}"></td>
         <td th:text="${citizen.pincode}"></td>
@@ -208,10 +206,11 @@ table th {
         <td th:text="${citizen.email}"></td>
         <td th:text="${citizen.mobileNo}"></td>
         <td th:text="${citizen.location}"></td>
+        <td><button  onclick="getlocation()" > Find Location </button></td>
       </tr>
   </tbody>
 </table>
-<button  onclick="getlocation()" > Find Location </button>
+
 <div id="demo" style="width: 600px; height: 400px; margin-left: 200px; position: relative;"></div> 
 </body>
 </html>
