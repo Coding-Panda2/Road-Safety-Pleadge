@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.springframework.data.geo.Point;
@@ -23,27 +22,15 @@ import lombok.ToString;
 @ToString
 @Builder
 @Entity
-@Table(name = "citizen")
-public class Citizen {
-
+@Table(name = "user")
+public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String fullName;
-	private String gender;
-	private String dateOfBirth;
-	private String pincode;
-	private String state;
-	private String district;
-	private String email;
-	private String mobileNo;
-	private Point location;
-	private String ipAddress;
-	
-	@Lob
-    private byte[] image;
-	
+	private String userName;
+	private String password;
+	private String role;
 
-	
 }

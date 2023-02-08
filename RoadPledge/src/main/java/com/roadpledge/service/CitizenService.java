@@ -29,7 +29,8 @@ public class CitizenService {
 				          .email(parameter.getEmail())
 				          .mobileNo(parameter.getMobileNo())
 				          .location(parameter.getLocation())
-				          .ipAddress(parameter.getIpAddress()).build();
+				          .ipAddress(parameter.getIpAddress())
+				          .image(parameter.getImage()).build();
 		
 		return citizenRepository.save(citizen);
 	}

@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head> 
+<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Customer Management System</title>
-<meta name="viewport" content="width=device-width" charset="UTF-8">
+
 
 <style>
 body {
@@ -37,13 +42,6 @@ background:black;
 padding: 5px;
 text-align: center;
 }
-li{
-display:inline-block;
-text-align: center;
-margin-left: 10%;
-margin-right: 10%;
-margin-top: -2%;
-}
 button{
 border-width:5px;
 border-style:double;
@@ -53,35 +51,7 @@ text-align: center;
 margin-bottom:inherit;
 margin-top: inherit; 
 }
-footer {
-background-color:gray;
-padding: 2px;
-text-align: center;
-font-size: 10px;
-color: white;
-}
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  align-content: center;
-  text-align: center;
-}
-table td,table th {
-  border: 1px solid #ddd;
-  padding: 2px;
-  font-size: small;
-}
-table tr:nth-child(even){background-color: #ccffcc;}
-table tr:nth-child(odd){background-color: #e6ffff;}
-table tr:hover {background-color: #ddd;}
-table th {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  text-align: center;
-  background-color: #04AA6D;
-  color: white;
-}
+
 </style>
 <script src="https://maps.google.com/maps/api/js?sensor=false"> </script> 
         
@@ -129,51 +99,6 @@ table th {
            }
         }    
 </script>
-
-   <!-- <script type="text/javascript"> 
-        
-        function getlocation1(){ 
-            if(navigator.geolocation){ 
-                navigator.geolocation.getCurrentPosition(showPos1, showErr1); 
-            }
-            else{
-                alert("Sorry! your Browser does not support Geolocation API")
-            }
-        } 
-        //Showing Current Poistion on Google Map
-        function showPos1(){ 
-            latt = pos.coords.latitude; 
-            long = pos.coords.longitude; 
-            var lattlong = new google.maps.LatLng(latt, long); 
-            var myOptions = { 
-                center: lattlong, 
-                zoom: 15, 
-                mapTypeControl: true, 
-                navigationControlOptions: {style:google.maps.NavigationControlStyle.SMALL} 
-            } 
-            var maps = new google.maps.Map(document.getElementById("demo"), myOptions); 
-            var markers = 
-            new google.maps.Marker({position:lattlong, map:maps, title:"You are here!"}); 
-        } 
-
-        //Handling Error and Rejection
-             function showErr1(error) {
-              switch(error.code){
-              case error.PERMISSION_DENIED:
-             alert("User denied the request for Geolocation API.");
-              break;
-              case error.POSITION_UNAVAILABLE:
-             alert("USer location information is unavailable.");
-              break;
-              case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-              break;
-              case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-              break;
-           }
-        }    
-</script> -->
 </head>
 <body>
 <img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
@@ -181,9 +106,9 @@ table th {
 <header>
 <h2>CITIZEN OF UP WHO HAVE COMMITTED THEMSELVES TO ROAD SAFETY</h2>
 </header>
-<table border="1" style="color:green; font-size-adjust: inherit;font-weight: bold;border-style: solid;">
-  <thead class="thead-dark">
-    <tr>
+<table class="table table-dark table-striped">
+  <thead class="table-info">
+    <tr class="table-info">
       <th>Citizen-Id</th>
       <th>Full Name</th>
       <th>Date Of Birth</th>
@@ -193,10 +118,11 @@ table th {
       <th>Email</th>
       <th>Mobile No</th> 
       <th>Location</th>
+      <th>Image</th>
     </tr>
   </thead>
   <tbody>
-      <tr th:each="citizen: ${citizens}">
+      <tr class="table-info" th:each="citizen: ${citizens}">
         <td th:text="${citizen.id}"></td>
         <td th:text="${citizen.fullName}"></td>
         <td th:text="${citizen.dateOfBirth}"></td>
@@ -206,6 +132,8 @@ table th {
         <td th:text="${citizen.email}"></td>
         <td th:text="${citizen.mobileNo}"></td>
         <td th:text="${citizen.location}"></td>
+        <td th:text="${citizen.image}"></td>
+ 
         <td><button  onclick="getlocation()" > Find Location </button></td>
       </tr>
   </tbody>
