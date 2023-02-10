@@ -14,7 +14,7 @@ import com.roadpledge.entity.Citizen;
 import com.roadpledge.service.CitizenService;
 
 @Controller
-@RequestMapping(path = "/")
+@RequestMapping(path = "/citizen")
 public class CitizenController {
 
 	@Autowired
@@ -29,20 +29,16 @@ public class CitizenController {
 	public String registrationForm() {
 		return "citizen_registrationform";
 	}
+	
 
+	
 	@PostMapping(path = "/pledge")
 	public String addCitizen(Citizen citizen) {
 		citizenService.addCitizen(citizen);
-		return "redirect:/registered_citizen";
+		return "readpledge";
 	}
 
-	@GetMapping(path = "/registered_citizen")
-	public String showAllCitizen(Model theModel) {
-		List<Citizen> citizens = citizenService.showAllCitizen();
-		theModel.addAttribute("citizens", citizens);
-		return "registered_citizen";
-
-	}
+	
 	
 	@GetMapping(path="/location")
 	public void findLocation(@RequestParam("id") int id, Model theModel) {

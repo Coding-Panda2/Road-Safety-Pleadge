@@ -20,12 +20,17 @@ padding-left: 10px
   border: none;
   border-radius: 50%;
   color: white;
-  padding: 12px 16px;
   font-size: 16px;
   font-weight: bolder;
   margin-top: 10px;
   margin-left:auto; 
   margin-right:auto;
+  padding-left: 50%; 
+  padding-right: 50%;
+  padding-top: 10 px;
+}
+div{
+float: right;
 }
 </style>
 <title>Road Safety Pledge </title>
@@ -33,6 +38,22 @@ padding-left: 10px
 <body>
 <img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
 <img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
-<a href="/registration"><button class="button">Take Pledge</button></a>
+<a href="/up_govt/citizen/registration"><button class="button">Take Pledge</button></a>
+<div>
+<fieldset>
+<form method="post" action="/up_govt/admin/registered_citizen">
+<label for="username">Enter UserName:</label>
+<input type="text" id="username" name="username" placeholder="Enter your User Name"/>
+<br>
+<label for="password">Enter UserName:</label>
+<input type="password" id="password" name="password" placeholder="Enter your Password"/>
+<br>
+<label for="role">Enter UserName:</label>
+<input type="text" id="role" name="role" placeholder="Enter your Role"/>
+<br>
+<button class="button">LogIN</button>
+</form>
+</fieldset>
+</div>
 </body>
 </html>
