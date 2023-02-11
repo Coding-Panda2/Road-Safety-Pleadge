@@ -54,7 +54,7 @@ function showPosition(position) {
 <h1>Enter Basic Details</h1>
 </header>
 
-<form style="align-items: center;" action="/up_govt/citizen/pledge" method="post"  class="form" >
+<form style="align-items: center;" action="/up_govt/citizen/pledge" method="post"  class="form"  enctype="application/x-www-form-urlencoded">
 <p>Registration of Citizen about to take pledge</p>
 <div class="row">
 <div class="col">
@@ -106,7 +106,10 @@ function showPosition(position) {
 <label for="image" >Enter your Addhar Image :</label><br>
 <input   type="file"  name="image" placeholder="Enter Your Addhar Image" class="form-control"/>
 </div>
-
+<div class="col">
+<label for="document" >Enter your Addhar Document :</label><br>
+<input   type="file"  name="document" placeholder="Enter Your Addhar file" class="form-control"/>
+</div>
 </div>
 <br>
 <div class="row">

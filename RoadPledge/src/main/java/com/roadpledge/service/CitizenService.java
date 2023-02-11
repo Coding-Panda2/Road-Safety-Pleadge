@@ -1,6 +1,7 @@
 package com.roadpledge.service;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,15 @@ public class CitizenService {
 	
 	@Autowired
 	private CitizenRepository citizenRepository;
+
 	
-	public Citizen addCitizen(Citizen parameter) {
+	public Citizen addCitizen(Citizen parameter) throws IOException {
+			
+		/*
+		 * Image image = imageRepository.save(uploadImage(parameter.getImage()));
+		 * Document document =
+		 * documentRepository.save(uploadDocument(parameter.getDocument()));
+		 */
 		
 		Citizen citizen = Citizen.builder()
 				          .fullName(parameter.getFullName())
@@ -30,10 +38,16 @@ public class CitizenService {
 				          .mobileNo(parameter.getMobileNo())
 				          .location(parameter.getLocation())
 				          .ipAddress(parameter.getIpAddress())
-				          .image(parameter.getImage()).build();
+				          .image(parameter.getImage())
+				          .document(parameter.getDocument())
+				          .build();
 		
 		return citizenRepository.save(citizen);
 	}
+	
+	
+
+	
 	
 	public List<Citizen> showAllCitizen(){
 		

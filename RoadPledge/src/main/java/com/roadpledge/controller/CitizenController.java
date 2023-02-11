@@ -1,14 +1,19 @@
 package com.roadpledge.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.roadpledge.entity.Citizen;
 import com.roadpledge.service.CitizenService;
@@ -33,8 +38,9 @@ public class CitizenController {
 
 	
 	@PostMapping(path = "/pledge")
-	public String addCitizen(Citizen citizen) {
+	public String addCitizen(@ModelAttribute Citizen citizen) throws IOException {
 		citizenService.addCitizen(citizen);
+	
 		return "readpledge";
 	}
 
