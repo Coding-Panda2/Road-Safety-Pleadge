@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Customer Management System</title>
+<style>
+body{
+background-color: #dae9f2;
+}
+.govlogo{
+padding-left: 10px
+}
+.roadsafetylogo{
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 50%;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+<script>
+
+// To get Co-ordinates of Client / User Side 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+ 
+}
+
+// To set the input field in form for pushing the data into the DB 
+function showPosition(position) {
+	document.getElementById("co-ordinates").value = position.coords.latitude + "," + position.coords.longitude;
+	
+// To get IP address and Set IP Address in input field to push to DB 	
+	$.getJSON("https://api.ipify.org?format=json", function(data) {
+		  document.getElementById("ipAddress").value = data.ip;    
+	      
+	  })
+}
+</script> 
+</head>
+<body onload="getLocation()">
+<img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
+<img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
+<header>
+<h1>Enter Basic Details</h1>
+</header>
+
+<form style="align-items: center;" action="/up_govt/citizen/pledge" method="post"  class="form" >
+<p>Registration of Citizen about to take pledge</p>
+<div class="row">
+<div class="col">
+<label  >Enter your Full value :</label><br>
+<input   type="text" name="fullName" placeholder="Enter Your Full Name" class="form-control"/>
+</div>
+<br>
+<div class="col">
+<label for="gender" >Please Select Your Gender :</label><br>
+<input   type="text" name="gender" placeholder="Enter your Gender" class="form-control"/>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col">
+<label for="gender" >Enter your Date of Birth :</label><br>
+<input   type="text"  name="dateOfBirth" placeholder="Enter your Date of Birth" class="form-control" />
+</div>
+<div class="col">
+<label for="pincode" >Enter your Pincode :</label><br>
+<input   type="text" name="pincode" placeholder="Enter your Pincode" class="form-control"/>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col">
+<label for="state" >Enter your State :</label><br>
+<input   type="text"  name="state" placeholder="Enter your State" class="form-control"/>
+</div>
+<div class="col">
+<label for="district" >Enter your District :</label><br>
+<input   type="text" name="district" placeholder="Enter your District" class="form-control"/>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col">
+<label for="email" >Enter your Email ID :</label><br>
+<input   type="text"  name="email" placeholder="Enter Your Email ID" class="form-control"/>
+</div>
+<div class="col">
+<label for="mobileNo" >Enter your MobileNo :</label><br>
+<input   type="text" name="mobileNo" placeholder="Enter your Mobile No" class="form-control"/>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col">
+<label for="image" >Enter your Addhar Image :</label><br>
+<input   type="file"  name="image" placeholder="Enter Your Addhar Image" class="form-control"/>
+</div>
+
+</div>
+<br>
+<div class="row">
+<div class="col">
+<input   id="co-ordinates" type="hidden" value=${Citizen.location} name="location" placeholder="" class="form-control"/>
+<input   id="ipAddress" type="hidden" value=${Citizen.ipAddress} name="ipAddress" placeholder="" class="form-control"/>
+</div>
+</div>
+<label>Submit the Details :</label>
+<button  type="submit" name="submit" class="btn btn-primary" >Proceed To Take Pledge</button>
+<br>
+
+</form>
+</body>
+</html>
