@@ -12,27 +12,27 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.roadpledge.entity.EmailDetails;
 
-@Component
+@Service
 public class EmailService {
 
 	 @Autowired private JavaMailSender javaMailSender;
+
 	 
 	    @Value("${spring.mail.username}") private String sender;
-	 
+
 	    // Method 1
 	    // To send a simple email
-	    public String sendMail(EmailDetails details){
+	    public String sendSimpleMail(EmailDetails details){
 	    
-	    	if(details.getAttachement().equals(null)) {
 	        // Try block to check for exceptions
 	        try {
 	 
 	            // Creating a simple mail message
-	            SimpleMailMessage mailMessage
-	                = new SimpleMailMessage();
+	            SimpleMailMessage mailMessage = new SimpleMailMessage();
 	 
 	            // Setting up necessary details
 	            mailMessage.setFrom(sender);
@@ -52,8 +52,9 @@ public class EmailService {
 	    }
 	    // Method 2
 	    // To send an email with attachment
-	    else{
-	        // Creating a mime message
+	    public String sendMailWithAttachment(EmailDetails details){
+	       
+	    	// Creating a mime message
 	        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 	        MimeMessageHelper mimeMessageHelper;
 	 
@@ -61,7 +62,7 @@ public class EmailService {
 	 
 	            // Setting multipart as true for attachments to
 	            // be send
-	            mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+	            mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 	            mimeMessageHelper.setFrom(sender);
 	            mimeMessageHelper.setTo(details.getEmailTo());
 	            mimeMessageHelper.setText(details.getEmailBody());
@@ -69,10 +70,11 @@ public class EmailService {
 	 
 	 
 	            // Adding the attachment
-	            FileSystemResource file = new FileSystemResource(new File(details.getAttachement()));
+	           
+	            FileSystemResource file = new FileSystemResource(new File("D:/RoadPledge/src/main/resources/static/"+details.getAttachment().getName()));
 	 
-	            mimeMessageHelper.addAttachment(
-	                file.getFilename(), file);
+	          mimeMessageHelper.addAttachment(file.getFilename(), file);
+	          //  mimeMessageHelper.addAttachment(file.getDescription(), file);
 	 
 	            // Sending the mail
 	            javaMailSender.send(mimeMessage);
@@ -87,4 +89,5 @@ public class EmailService {
 	        }
 	    }
 	}
-}
+
+

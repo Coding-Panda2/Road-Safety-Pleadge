@@ -8,4 +8,6 @@ import com.roadpledge.entity.Citizen;
 @Repository 
 public interface CitizenRepository extends JpaRepository<Citizen, Integer> {
 
+	Citizen findByEmail(String email);
+	
 }

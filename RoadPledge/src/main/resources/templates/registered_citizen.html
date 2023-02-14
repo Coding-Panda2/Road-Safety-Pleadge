@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head> 
 <meta charset="UTF-8">
@@ -118,7 +120,7 @@ margin-top: inherit;
       <th>Email</th>
       <th>Mobile No</th> 
       <th>Location</th>
-      <th>Image</th>
+      <th>Send Mail</th>
     </tr>
   </thead>
   <tbody>
@@ -133,12 +135,33 @@ margin-top: inherit;
         <td th:text="${citizen.mobileNo}"></td>
         <td th:text="${citizen.location}"></td>
         <td th:text="${citizen.image}"></td>
- 
+        <td><a th:href="@{/admin/{email}(email=${citizen.email})}"><button>Send Mail</button></a></td>
         <td><button  onclick="getlocation()" > Find Location </button></td>
       </tr>
   </tbody>
 </table>
 
-<div id="demo" style="width: 600px; height: 400px; margin-left: 200px; position: relative;"></div> 
+<div id="demo" style="width: 450px; height: 500px; margin-left: 10px; position:left ;"></div> 
+<div id="demo1" style="width: 450px; height: 500px; margin-left: 10px; position:right  ;">
+
+<form method="post" action="/up_govt/admin/sendMail" enctype="multipart/form-data" >
+<label for="emailTo">Recipient:</label>
+<input type="email" name=${emailDetails.emailTo} value=""  placeholder=""/>
+<br>
+<label for="subject">Subject :</label>
+<input type="text" name="subject" placeholder="Subject of Mail"/>
+<br>
+<br>
+<label for="emailBody">EMail Body:</label>
+<input type="text" name="emailBody" placeholder="Mail for the Recipient"/>
+<br>
+<br>
+<label for="attachment">Attachment:</label>
+<input type="file" name="attachment" placeholder="Attachments if Any"/>
+<br>
+<button type="submit" name="submit">Send Mail</button>
+</form>
+
+</div> 
 </body>
 </html>

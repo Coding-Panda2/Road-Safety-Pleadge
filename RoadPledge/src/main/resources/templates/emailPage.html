@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<form>
+<form method="post" action="/up_govt/mail/sendMail"  >
 <label for="emailTo">Recipient:</label>
-<input type="text" name="emailTo" placeholder="Enter Email ID of Recipient"/>
+<input type="text" th:name="emailTo" th:value="${emailDetails.emailTo}" placeholder=""/>
 <br>
-<label for="emailTo">Recipient:</label>
-<input type="text" name="emailTo" placeholder="Enter Email ID of Recipient"/>
+<label for="subject">Subject :</label>
+<input type="text" name="subject" placeholder="Subject of Mail"/>
 <br>
-
+<br>
+<label for="emailBody">Email Body:</label>
+<input type="text" name="emailBody" placeholder="Mail for the Recipient"/>
+<br>
+<br>
+<label for="attachment">Attachment:</label>
+<input type="file" name="attachment" placeholder="Attachments if Any"/>
+<br>
+<button type="submit" name="submit">Send Mail</button>
 </form>
+	
 
 </body>
 </html>

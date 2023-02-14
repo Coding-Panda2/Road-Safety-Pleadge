@@ -60,5 +60,12 @@ public class CitizenService {
 		Citizen citizen = citizenRepository.findById(id).orElseThrow();
 		return citizen;
 	}
+	
+	public Citizen searchByMail(String email) {
+		
+		Citizen citizen = citizenRepository.findByEmail(email);
+		return citizen;
+		
+	}
 
 }

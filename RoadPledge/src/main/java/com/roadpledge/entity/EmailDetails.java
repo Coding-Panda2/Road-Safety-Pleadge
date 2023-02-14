@@ -1,5 +1,7 @@
 package com.roadpledge.entity;
 
+import java.io.File;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +16,6 @@ public class EmailDetails {
 	private String emailTo;
 	private String subject ;
 	private String emailBody;
-	private String attachement;
+	private File attachment;
 
 }
