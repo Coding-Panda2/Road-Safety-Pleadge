@@ -24,7 +24,7 @@ public class AdminController {
 	private CitizenService citizenService;
 	
 	
-	@PostMapping(path = "/registered_citizen")
+	@GetMapping(path = "/registered_citizen")
 	public String showAllCitizen(Model theModel) {
 		List<Citizen> citizens = citizenService.showAllCitizen();
 		theModel.addAttribute("citizens", citizens);

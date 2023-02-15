@@ -21,7 +21,7 @@ public class DataOnStartUp {
 	@EventListener(ApplicationReadyEvent.class)
 	public void addDefaultData(ApplicationReadyEvent event){
 		User user1 = User.builder().userName("OWNER").password(passwordEncoder.encode("0123456789")).role("ADMIN").build();
-		User user2 = User.builder().userName("WORKER").password(passwordEncoder.encode("9368991783")).role("USER").build();
+		User user2 = User.builder().userName("WORKER").password(passwordEncoder.encode("9876543210")).role("USER").build();
 		userRepository.save(user1);
 		userRepository.save(user2);
 	}

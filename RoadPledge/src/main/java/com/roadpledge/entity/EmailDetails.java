@@ -2,6 +2,8 @@ package com.roadpledge.entity;
 
 import java.io.File;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +18,6 @@ public class EmailDetails {
 	private String emailTo;
 	private String subject ;
 	private String emailBody;
-	private File attachment;
+	private MultipartFile attachment;
 
 }

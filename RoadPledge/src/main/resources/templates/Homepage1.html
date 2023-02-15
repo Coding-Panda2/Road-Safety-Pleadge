@@ -29,8 +29,11 @@ padding-left: 10px
   padding-right: 50%;
   padding-top: 10 px;
 }
-div{
+.first{
 float: right;
+}
+.second{
+float: left;
 }
 </style>
 <title>Road Safety Pledge </title>
@@ -38,10 +41,10 @@ float: right;
 <body>
 <img class="govlogo" alt="My UP Gov" src="https://pledge.mygov.in/road-safety/assets/images/mygov.png">
 <img class="roadsafetylogo" alt="Road Safety Logo" src="https://pledge.mygov.in/road-safety/assets/images/banner.jpg">
-<a href="/up_govt/citizen/registration"><button class="button">Take Pledge</button></a>
-<div>
-<fieldset>
-<form method="post" action="/up_govt/admin/registered_citizen">
+<div class="second"><a href="/up_govt/citizen/registration"><button class="button">Take Pledge</button></a></div>
+<div class="first"><a href="/up_govt/admin/registered_citizen"><button class="button">Administer Look</button></a></div>
+<!-- <fieldset>
+<form  action="/up_govt/admin/registered_citizen">
 <label for="username">Enter UserName:</label>
 <input type="text" id="username" name="username" placeholder="Enter your User Name"/>
 <br>
@@ -51,9 +54,9 @@ float: right;
 <label for="role">Enter UserName:</label>
 <input type="text" id="role" name="role" placeholder="Enter your Role"/>
 <br>
-<button class="button">LogIN</button>
+<button class="button" >LogIN</button>
 </form>
-</fieldset>
-</div>
+</fieldset> -->
+
 </body>
 </html>

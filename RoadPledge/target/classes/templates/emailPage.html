@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="/up_govt/mail/sendMail"  >
+<form method="post" action="/up_govt/mail/sendMail" enctype="multipart/form-data" >
 <label for="emailTo">Recipient:</label>
 <input type="text" th:name="emailTo" th:value="${emailDetails.emailTo}" placeholder=""/>
 <br>
