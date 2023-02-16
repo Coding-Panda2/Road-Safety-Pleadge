@@ -119,8 +119,11 @@ margin-top: inherit;
       <th>District</th>
       <th>Email</th>
       <th>Mobile No</th> 
-      <th>Location</th>
+      <th>QR Code</th>
+      <th>Download Aadhar Image</th>
+      <th>Download Aadhar Document</th>
       <th>Send Mail</th>
+      <th>Find Location of User</th>
     </tr>
   </thead>
   <tbody>
@@ -133,8 +136,12 @@ margin-top: inherit;
         <td th:text="${citizen.district}"></td>
         <td th:text="${citizen.email}"></td>
         <td th:text="${citizen.mobileNo}"></td>
-        <td th:text="${citizen.location}"></td>
-        <td th:text="${citizen.image}"></td>
+        <td><img th:src="@{${'/QR-Codes-Form-Details/'+ citizen.mobileNo +'.png'}}"></td>
+        <td ><img th:src="@{${'/uploadImage/' + citizen.iName}}">
+             <a th:href="@{/admin/downloadImage/{iName}(iName=${citizen.iName})}"><button>Download Image Multi</button></a>
+             <a th:href="@{/admin/get-image}"><button>Download Image Control</button></a>
+        </td>
+        <td></td>
         <td><a th:href="@{/admin/{email}(email=${citizen.email})}"><button>Send Mail</button></a></td>
         <td><button  onclick="getlocation()" > Find Location </button></td>
       </tr>

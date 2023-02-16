@@ -1,6 +1,5 @@
 package com.roadpledge.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,9 @@ public class CitizenController {
 	
 
 	
-	@PostMapping(path = "/pledge")
-	public String addCitizen(@ModelAttribute Citizen citizen) throws IOException {
+	@PostMapping(path = "/pledge", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String addCitizen(@ModelAttribute Citizen citizen) throws Exception {
+		
 		citizenService.addCitizen(citizen);
 	
 		return "readpledge";

@@ -1,6 +1,7 @@
 package com.roadpledge.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.geo.Point;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,15 +44,24 @@ public class Citizen {
 	private String state;
 	private String district;
 	private String email;
+	
+	@Column(unique = true)
 	private String mobileNo;
+	
 	private Point location;
 	private String ipAddress;
 	
+    @Transient
+    private MultipartFile image;
+    private String iName;
 	@Lob
-	private byte[] image;
+	private byte[] iData;
 	
+	@Transient
+    private MultipartFile document;
+	private String dName;
 	@Lob
-	private byte[] document;
+	private byte[] dData;
 	
 	
 	

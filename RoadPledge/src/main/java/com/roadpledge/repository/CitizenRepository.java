@@ -9,5 +9,7 @@ import com.roadpledge.entity.Citizen;
 public interface CitizenRepository extends JpaRepository<Citizen, Integer> {
 
 	Citizen findByEmail(String email);
+
+	Citizen findByiName(String iName);
 	
 }
