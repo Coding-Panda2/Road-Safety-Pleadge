@@ -13,7 +13,6 @@ import com.roadpledge.entity.User;
 
 public class CitizenUserDetail implements UserDetails {
 	
-	@Autowired
 	private User user; 
 	
 	public CitizenUserDetail(User user) {
@@ -25,7 +24,7 @@ public class CitizenUserDetail implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = user.getRole();
 		List<SimpleGrantedAuthority> authority = new ArrayList<SimpleGrantedAuthority>();
-		authority.add(new SimpleGrantedAuthority("ROLE_"+role));
+		authority.add(new SimpleGrantedAuthority(role));
 		return authority;
 	}
 

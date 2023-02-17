@@ -59,8 +59,10 @@ public class SecurityConfig {
 
 		http.csrf().disable().cors().disable()
 //		    .antMatcher("/up_govt/citizen/**")
-				.authorizeRequests().antMatchers("/up_govt/admin/**").hasRole("ADMIN").and().authorizeRequests()
-				.antMatchers("/up_govt/mail/**").hasRole("ADMIN").and().authorizeRequests()
+				.authorizeRequests().antMatchers("/up_govt/admin/**").hasRole("ADMIN")
+				.and().authorizeRequests()
+				.antMatchers("/up_govt/mail/**").hasRole("ADMIN")
+				.and().authorizeRequests()
 				.antMatchers("/up_govt/citizen/**").hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and()
 				.formLogin().and().httpBasic();
 
